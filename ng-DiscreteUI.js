@@ -26,6 +26,8 @@ module.factory( 'AdoptionAgency', function() {
 			var oldElm = document.getElementById( id );
 			var newElm = document.createElement( element.tag );
 			newElm.setAttribute( 'id', element.newElm );
+			newElm.style.width = oldElm.offsetWidth + 'px'; /* would like to move this out and into the users code */
+			newElm.style.left = oldElm.offsetLeft + 'px'; /* would like to move this out and into the users code */
 			element.container.appendChild( newElm );
 			this.custody( newElm, oldElm );
 		},
