@@ -3,7 +3,7 @@
 var module = angular.module( 'demo', ['ngDiscreteUI'] );
 
 
-module.directive( 'mydirwhichtriggersadoption', [ 'AdoptionAgency', function(AdoptionAgency) {
+module.directive( 'custdir', [ 'AdoptionAgency', function(AdoptionAgency) {
 	return {
 
 		require: 'discrete',
@@ -12,15 +12,17 @@ module.directive( 'mydirwhichtriggersadoption', [ 'AdoptionAgency', function(Ado
 			var elementHeight = document.getElementById(attrs.id).offsetTop;
 			var oldElm = document.getElementById(attrs.id);
 
+			var newElm = document.getElementById(attrs.id + '_discrete');
+
 			angular.element( window ).bind( 'scroll', function() {
 
-				if( scope.discrete ) {
-					var newElm = document.getElementById(attrs.id + '_discrete');
-
-					newElm.style.width = oldElm.offsetWidth + 'px';
-					newElm.style.left = oldElm.offsetLeft + 'px';
-
-				}
+//				if( scope.discrete ) {
+//					var newElm = document.getElementById(attrs.id + '_discrete');
+//
+//					newElm.style.width = oldElm.offsetWidth + 'px';
+//					newElm.style.left = oldElm.offsetLeft + 'px';
+//
+//				}
 
 				var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
@@ -29,6 +31,7 @@ module.directive( 'mydirwhichtriggersadoption', [ 'AdoptionAgency', function(Ado
 					scope.$apply( function () {
 						scope.discrete = true;
 					});
+
 				}
 
 				else {
@@ -61,7 +64,6 @@ module.directive( 'mydirwhichtriggersadoption', [ 'AdoptionAgency', function(Ado
 
 	}
 }]);
-
 
 
 
