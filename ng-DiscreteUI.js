@@ -45,6 +45,13 @@ module.factory( 'AdoptionAgency', function() {
 			var oldElm = document.getElementById( id );
 			var newElm = document.getElementById( element.newElm );
 			if ( newElm ) {
+
+				if ( oldElm.style.removeProperty ) {
+					oldElm.style.removeProperty( 'height' );
+				} else {
+					oldElm.style.removeAttribute( 'height' );
+				}
+
 				this.custody( oldElm, newElm );
 				newElm.parentNode.removeChild( newElm );
 			}
