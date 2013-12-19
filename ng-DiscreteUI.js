@@ -1,4 +1,4 @@
-/* ng-DiscreteUI.js v1.0.0
+/* ng-DiscreteUI.js v1.1.0
  * https://github.com/patrickmarabeas/ng-DiscreteUI.js
  *
  * Copyright 2013, Patrick Marabeas http://pulse-dev.com
@@ -24,12 +24,20 @@ module.factory( 'AdoptionAgency', function() {
 		create: function( id ) {
 			var element = this.adopts[id];
 			var oldElm = document.getElementById( id );
-				oldElm.style.height = oldElm.offsetHeight + 'px';
 			var newElm = document.createElement( element.tag );
-				newElm.setAttribute( 'id', element.newElm );
-				newElm.style.width = oldElm.offsetWidth + 'px'; /* would like to move this out and into the users code */
-				newElm.style.left = oldElm.offsetLeft + 'px'; /* would like to move this out and into the users code */
+			newElm.setAttribute( 'id', element.newElm );
 			element.container.appendChild( newElm );
+
+			if((new RegExp('height')).test( element.maintain )) {
+				oldElm.style.height = oldElm.offsetHeight + 'px';
+			}
+			if((new RegExp('width')).test( element.maintain )) {
+				newElm.style.width = oldElm.offsetWidth + 'px';
+			}
+			if((new RegExp('left')).test( element.maintain )) {
+				newElm.style.left = oldElm.offsetLeft + 'px';
+			}
+
 			this.custody( newElm, oldElm );
 		},
 		destroy: function( id ) {
@@ -57,7 +65,8 @@ module.directive( 'discrete', [ 'AdoptionAgency', function( AdoptionAgency ) {
 			AdoptionAgency.addAdopts( attrs.id, {
 				newElm: attrs.id + '_discrete',
 				tag: element[0].nodeName,
-				container: document.getElementById( attrs.id ).parentNode
+				container: document.getElementById( attrs.id ).parentNode,
+				maintain: attrs.discreteMaintain
 			});
 
 			scope.$watch('discrete', function( adopt ){
