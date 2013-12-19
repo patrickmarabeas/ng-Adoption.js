@@ -24,10 +24,11 @@ module.factory( 'AdoptionAgency', function() {
 		create: function( id ) {
 			var element = this.adopts[id];
 			var oldElm = document.getElementById( id );
+				oldElm.style.height = oldElm.offsetHeight + 'px';
 			var newElm = document.createElement( element.tag );
-			newElm.setAttribute( 'id', element.newElm );
-			newElm.style.width = oldElm.offsetWidth + 'px'; /* would like to move this out and into the users code */
-			newElm.style.left = oldElm.offsetLeft + 'px'; /* would like to move this out and into the users code */
+				newElm.setAttribute( 'id', element.newElm );
+				newElm.style.width = oldElm.offsetWidth + 'px'; /* would like to move this out and into the users code */
+				newElm.style.left = oldElm.offsetLeft + 'px'; /* would like to move this out and into the users code */
 			element.container.appendChild( newElm );
 			this.custody( newElm, oldElm );
 		},
