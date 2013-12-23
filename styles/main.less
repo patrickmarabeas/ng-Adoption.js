@@ -7,6 +7,7 @@ body {
 div, section {
 	min-height: 2px;
 }
+
 .page {
 	max-width: 800px;
 	margin: 0 auto;
@@ -14,34 +15,53 @@ div, section {
 }
 
 #parent {
-	margin-top: 50px;
 	float: left;
 	width: 40%;
-	background-color: red;
+	background-color: green;
 }
 
-#parent_discrete, #parent2_discrete, #parent4_discrete {
-	background-color: grey;
-	position: fixed;
-	top: 0;
-}
-
-#parent2, #parent4 {
+#parent2 {
 
 	float: left;
 	width: 60%;
 	background-color: red;
 }
 
-
 #parent3 {
-	margin-top: 50px;
+	float: left;
+	width: 40%;
+	background-color: red;
+}
+
+#parent4 {
+
+	float: left;
+	width: 60%;
+	background-color: green;
+	height: 100px;
+}
+
+
+#parent5 {
+
 	float: left;
 	width: 100%;
 	background-color: blue;
+	height: 100px;
 }
 
-#parent3_discrete {
+
+
+
+
+#parent_discrete, #parent2_discrete, #parent3_discrete, #parent4_discrete {
+	background-color: grey;
+	position: fixed;
+	top: 0;
+}
+
+
+#parent5_discrete {
 	position: fixed;
 	bottom: 0;
 	left: 0 !important;
