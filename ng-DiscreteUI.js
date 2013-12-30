@@ -35,7 +35,7 @@ module.factory( 'AdoptionAgency', function() {
 				newElm.style.width = oldElm.offsetWidth + 'px';
 			}
 			if((new RegExp('left')).test( element.maintain )) {
-				newElm.style.left = oldElm.offsetLeft + 'px';
+				newElm.style.left = oldElm.getBoundingClientRect().left + 'px';
 			}
 
 			this.custody( newElm, oldElm );
