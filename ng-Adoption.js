@@ -1,5 +1,5 @@
-/* ng-DiscreteUI.js v1.2.0
- * https://github.com/patrickmarabeas/ng-DiscreteUI.js
+/* ng-Adoption.js v1.2.1
+ * https://github.com/patrickmarabeas/ng-Adoption.js
  *
  * Copyright 2013, Patrick Marabeas http://pulse-dev.com
  * Released under the MIT license
@@ -8,7 +8,7 @@
  * Date: 19/12/2013
  */
 
-var module = angular.module( 'ngDiscreteUI', [] );
+var module = angular.module( 'ngAdoption', [] );
 
 module.factory( 'AdoptionAgency', function() {
 	return {

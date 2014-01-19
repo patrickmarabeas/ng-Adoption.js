@@ -1,6 +1,6 @@
 
 
-var module = angular.module( 'demo', ['ngDiscreteUI'] );
+var module = angular.module( 'demo', ['ngAdoption'] );
 
 
 module.directive( 'custdir', [ 'AdoptionAgency', function(AdoptionAgency) {
