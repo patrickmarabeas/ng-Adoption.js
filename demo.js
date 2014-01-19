@@ -6,7 +6,7 @@ var module = angular.module( 'demo', ['ngDiscreteUI'] );
 module.directive( 'custdir', [ 'AdoptionAgency', function(AdoptionAgency) {
 	return {
 
-		require: 'discrete',
+		require: 'adopt',
 		link: function( scope, element, attrs) {
 
 			var elementHeight = document.getElementById(attrs.id).offsetTop;
@@ -29,14 +29,14 @@ module.directive( 'custdir', [ 'AdoptionAgency', function(AdoptionAgency) {
 				if( scrollTop > elementHeight ) {
 
 					scope.$apply( function () {
-						scope.discrete = true;
+						scope.adopt = true;
 					});
 
 				}
 
 				else {
 					scope.$apply( function () {
-						scope.discrete = false;
+						scope.adopt = false;
 					});
 				}
 
@@ -46,7 +46,7 @@ module.directive( 'custdir', [ 'AdoptionAgency', function(AdoptionAgency) {
 			angular.element( window ).bind( 'resize', function() {
 
 
-				if( scope.discrete ) {
+				if( scope.adopt ) {
 					var newElm = document.getElementById(attrs.id + '_discrete');
 
 					newElm.style.width = oldElm.offsetWidth + 'px';
