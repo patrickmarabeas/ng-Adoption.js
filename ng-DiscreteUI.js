@@ -1,4 +1,4 @@
-/* ng-DiscreteUI.js v1.1.0
+/* ng-DiscreteUI.js v1.2.0
  * https://github.com/patrickmarabeas/ng-DiscreteUI.js
  *
  * Copyright 2013, Patrick Marabeas http://pulse-dev.com
@@ -60,7 +60,7 @@ module.factory( 'AdoptionAgency', function() {
 });
 
 
-module.directive( 'discrete', [ 'AdoptionAgency', function( AdoptionAgency ) {
+module.directive( 'adopt', [ 'AdoptionAgency', function( AdoptionAgency ) {
 	return {
 
 		controller: function( $scope, $element, $attrs ) {
@@ -69,22 +69,44 @@ module.directive( 'discrete', [ 'AdoptionAgency', function( AdoptionAgency ) {
 		scope: true,
 		link: function( scope, element, attrs ) {
 
+			var preset = false;
+			(function() {
+				if( document.getElementById( attrs.adoptId ) ) {
+					preset = true;
+				}
+			})();
+
 			AdoptionAgency.addAdopts( attrs.id, {
-				newElm: attrs.id + '_discrete',
+				newElm: attrs.adoptId || attrs.id + '_clone',
 				tag: element[0].nodeName,
 				container: document.getElementById( attrs.id ).parentNode,
-				maintain: attrs.discreteMaintain
+				preset: preset,
+				maintain: attrs.adoptMaintain
 			});
 
-			scope.$watch('discrete', function( adopt ){
+			scope.$watch('adopt', function( adopt ){
 				if( adopt ){
-					AdoptionAgency.create( attrs.id );
+
+					if( document.getElementById( attrs.adoptId ) ) {
+						var oldElm = document.getElementById( attrs.id );
+						var newElm = document.getElementById( attrs.adoptId );
+						AdoptionAgency.custody( newElm, oldElm );
+					}
+					else {
+						AdoptionAgency.create( attrs.id );
+					}
 				}
 				else{
-					AdoptionAgency.destroy( attrs.id );
+					if( preset ) {
+						var newElm = document.getElementById( attrs.id );
+						var oldElm = document.getElementById( attrs.adoptId );
+						AdoptionAgency.custody( newElm, oldElm );
+					}
+					else {
+						AdoptionAgency.destroy( attrs.id );
+					}
 				}
 			});
-
 		}
 	}
 }]);
