@@ -61,6 +61,12 @@ module.factory( 'AdoptionAgency', function() {
 
 
 module.directive( 'adopt', [ 'AdoptionAgency', function( AdoptionAgency ) {
+
+//	This is too stringent. Should pass in old/new elms via the third party directive using scope.
+//	The user should be able to define these elements within their code - allowing for more radical
+//	adoption proceedures - ie, the elements children can be passed around between more than two
+//	elements with ease
+
 	return {
 
 		controller: function( $scope, $element, $attrs ) {
